@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Clínica</title>
+  <link rel="icon" href="imgs/logo.webp" type="image/avif">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header class="header">
+    <img src="imgs/logo_fisio4life.avif" alt="" class="logo">
+    <ul class="links">
+      <a class="link-header ativo" href="">
+        <li>Cadastrar clínica</li>
+      </a>
+      <a class="link-header" href="cadastro_fisioterapeuta.html">
+        <li>Cadastrar fisioterapeuta</li>
+      </a>
+      <a class="link-header" href="fisioterapeutas.html">
+        <li>Fisioterapeutas</li>
+      </a>
+
+    </ul>
+    <button class="btn-fale-conosco">Fale conosco</button>
+  </header>
+
+  <main class="page">
+    <div class="card">
+
+      <header class="card-header">
+        <h1 class="card-title">Cadastro de Clínica</h1>
+        <p class="card-subtitle">Preencha os dados abaixo para registrar uma nova unidade de fisioterapia na rede.</p>
+      </header>
+
+      <div id="formFeedback" class="form-feedback" role="alert" aria-live="polite" hidden></div>
+
+      <form id="clinicaForm" novalidate>
+
+        <div class="section">
+          <p class="section-title">Dados da clínica</p>
+
+          <div class="field">
+            <label for="nomeUnidade">Nome da unidade <span class="required">*</span></label>
+            <input type="text" id="nomeUnidade" name="nomeUnidade" placeholder="Ex.: Mooca" autocomplete="off">
+            <span class="error-message" id="erro-nomeUnidade"></span>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="tipoUnidade">Tipo da unidade <span class="required">*</span></label>
+              <select id="tipoUnidade" name="tipoUnidade">
+                <option value="">Selecione</option>
+                <option value="Principal">Principal</option>
+                <option value="Filial">Filial</option>
+              </select>
+              <span class="error-message" id="erro-tipoUnidade"></span>
+            </div>
+
+            <div class="field">
+              <label for="dtAbertura">Data de abertura <span class="required">*</span></label>
+              <input type="date" id="dtAbertura" name="dtAbertura">
+              <span class="error-message" id="erro-dtAbertura"></span>
+            </div>
+          </div>
+
+          <div class="field field-checkbox">
+            <label class="checkbox-label" for="ativa">
+              <input type="checkbox" id="ativa" name="ativa" checked>
+              <span>Unidade ativa</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Seção 2: Capacidade e configuração -->
+        <div class="section">
+          <p class="section-title">Capacidade e configuração</p>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="capacidadeFisio">Capacidade de fisioterapeutas <span class="required">*</span></label>
+              <input type="number" id="capacidadeFisio" name="capacidadeFisio" min="1" step="1" placeholder="Ex.: 5">
+              <span class="error-message" id="erro-capacidadeFisio"></span>
+            </div>
+
+            <div class="field">
+              <label for="capacidadePacientes">Capacidade de pacientes <span class="required">*</span></label>
+              <input type="number" id="capacidadePacientes" name="capacidadePacientes" min="1" step="1"
+                placeholder="Ex.: 50">
+              <span class="error-message" id="erro-capacidadePacientes"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seção 3: Endereço da unidade -->
+        <div class="section">
+          <p class="section-title">Endereço da unidade</p>
+
+          <div class="field">
+            <label for="rua">Rua <span class="required">*</span></label>
+            <input type="text" id="rua" name="rua" placeholder="Ex.: Rua Gabirobeira" autocomplete="off">
+            <span class="error-message" id="erro-rua"></span>
+          </div>
+
+          <div class="field-row">
+            <div class="field field-small">
+              <label for="numero">Número <span class="required">*</span></label>
+              <input type="text" id="numero" name="numero" placeholder="Ex.: 84" autocomplete="off">
+              <span class="error-message" id="erro-numero"></span>
+            </div>
+
+            <div class="field">
+              <label for="bairro">Bairro <span class="required">*</span></label>
+              <input type="text" id="bairro" name="bairro" placeholder="Ex.: Cidade das Flores" autocomplete="off">
+              <span class="error-message" id="erro-bairro"></span>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="cidade">Cidade <span class="required">*</span></label>
+              <input type="text" id="cidade" name="cidade" placeholder="Ex.: Osasco" autocomplete="off">
+              <span class="error-message" id="erro-cidade"></span>
+            </div>
+
+            <div class="field field-small">
+              <label for="cep">CEP <span class="required">*</span></label>
+              <input type="text" id="cep" name="cep" placeholder="Ex.: 06184-190" inputmode="numeric"
+                autocomplete="off">
+              <span class="error-message" id="erro-cep"></span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="complemento">Complemento</label>
+            <input type="text" id="complemento" name="complemento" placeholder="Opcional" autocomplete="off">
+          </div>
+        </div>
+
+        <!-- Seção 4: Ações -->
+        <div class="actions">
+          <button type="button" id="btnLimpar" class="btn btn-secondary">Limpar</button>
+          <button type="submit" id="btnCadastrar" class="btn btn-primary">Cadastrar clínica</button>
+        </div>
+
+      </form>
+    </div>
+  </main>
+
+  <script>
+    const form = document.getElementById('clinicaForm');
+    const btnCadastrar = document.getElementById('btnCadastrar');
+    const btnLimpar = document.getElementById('btnLimpar');
+    const formFeedback = document.getElementById('formFeedback');
+    const campos = {
+      nomeUnidade: document.getElementById('nomeUnidade'),
+      capacidadeFisio: document.getElementById('capacidadeFisio'),
+      capacidadePacientes: document.getElementById('capacidadePacientes'),
+      tipoUnidade: document.getElementById('tipoUnidade'),
+      ativa: document.getElementById('ativa'),
+      dtAbertura: document.getElementById('dtAbertura'),
+      rua: document.getElementById('rua'),
+      numero: document.getElementById('numero'),
+      bairro: document.getElementById('bairro'),
+      cidade: document.getElementById('cidade'),
+      cep: document.getElementById('cep'),
+      complemento: document.getElementById('complemento')
+    };
+    const TEXTO_BOTAO_PADRAO = 'Cadastrar clínica';
+    const TEXTO_BOTAO_ENVIANDO = 'Cadastrando...';
+    let enviando = false;
+    
+    function mostrarErroCampo(nomeCampo, mensagem) {
+      const input = campos[nomeCampo];
+      const spanErro = document.querySelector(`#erro-${nomeCampo}`);
+      if (input) input.classList.add('invalid');
+      if (spanErro) spanErro.textContent = mensagem;
+    }
+
+    function limparErroCampo(nomeCampo) {
+      const input = campos[nomeCampo];
+      const spanErro = document.querySelector(`#erro-${nomeCampo}`);
+      if (input) input.classList.remove('invalid');
+      if (spanErro) spanErro.textContent = '';
+    }
+
+    function limparTodosErros() {
+      limparErroCampo('nomeUnidade')
+      limparErroCampo('capacidadeFisio')
+      limparErroCampo('capacidadePacientes')
+      limparErroCampo('tipoUnidade')
+      limparErroCampo('ativa')
+      limparErroCampo('dtAbertura')
+      limparErroCampo('rua')
+      limparErroCampo('numero')
+      limparErroCampo('bairro')
+      limparErroCampo('cidade')
+      limparErroCampo('cep')
+      limparErroCampo('complemento')
+    }
+
+
+    function mostrarFeedback(tipo, mensagem) {
+      formFeedback.hidden = false;
+      formFeedback.textContent = mensagem;
+      formFeedback.className = 'form-feedback feedback-' + tipo;
+    }
+    function esconderFeedback() {
+      formFeedback.hidden = true;
+      formFeedback.textContent = '';
+      formFeedback.className = 'form-feedback';
+    }
+    function limparCep(valor) {
+      return valor.replace(/\D/g, '');
+    }
+
+    document.getElementById('nomeUnidade').addEventListener("input", limparErroCampo("nomeUnidade"))
+    document.getElementById('capacidadeFisio').addEventListener("input", limparErroCampo("capacidadeFisio"))
+    document.getElementById('capacidadePacientes').addEventListener("input", limparErroCampo("capacidadePacientes"))
+    document.getElementById('tipoUnidade').addEventListener("input", limparErroCampo("tipoUnidade"))
+    document.getElementById('ativa').addEventListener("input", limparErroCampo("ativa"))
+    document.getElementById('dtAbertura').addEventListener("input", limparErroCampo("dtAbertura"))
+    document.getElementById('rua').addEventListener("input", limparErroCampo("rua"))
+    document.getElementById('numero').addEventListener("input", limparErroCampo("numero"))
+    document.getElementById('bairro').addEventListener("input", limparErroCampo("bairro"))
+    document.getElementById('cidade').addEventListener("input", limparErroCampo("cidade"))
+    document.getElementById('cep').addEventListener("input", limparErroCampo("cep"))
+    document.getElementById('complemento').addEventListener("input", limparErroCampo("complemento"))
+
+
+    function validarFormulario() {
+      limparTodosErros();
+      let valido = true;
+      const nomeUnidade = campos.nomeUnidade.value.trim();
+      if (nomeUnidade.length < 3) {
+        mostrarErroCampo('nomeUnidade', 'O nome da unidade deve possuir pelo menos 2 caracteres.');
+        valido = false;
+      }
+      const capacidadeFisioRaw = campos.capacidadeFisio.value;
+      const capacidadeFisio = Number(capacidadeFisioRaw);
+      if (capacidadeFisioRaw === '' || Number.isNaN(capacidadeFisio) || capacidadeFisio <= 0) {
+        mostrarErroCampo('capacidadeFisio', 'Informe uma capacidade de fisioterapeutas maior que 0.');
+        valido = false;
+      }
+      const capacidadePacientesRaw = campos.capacidadePacientes.value;
+      const capacidadePacientes = Number(capacidadePacientesRaw);
+      if (capacidadePacientesRaw === '' || Number.isNaN(capacidadePacientes) || capacidadePacientes <= 0) {
+        mostrarErroCampo('capacidadePacientes', 'Informe uma capacidade de pacientes maior que 0.');
+        valido = false;
+      }
+      const tipoUnidade = campos.tipoUnidade.value;
+      if (tipoUnidade !== 'Principal' && tipoUnidade !== 'Filial') {
+        mostrarErroCampo('tipoUnidade', 'Selecione o tipo da unidade.');
+        valido = false;
+      }
+      const dtAbertura = campos.dtAbertura.value;
+      const duzentosAnosAtrasMs = (1000 * 60 * 60 * 24 * 365 * 200)
+
+      if (
+        !dtAbertura || 
+        Number.isNaN(new Date(dtAbertura).getTime()) ||
+        new Date(dtAbertura) >= new Date() ||
+        new Date(dtAbertura) <= new Date() - duzentosAnosAtrasMs
+      ) {
+        mostrarErroCampo('dtAbertura', 'Informe uma data de abertura válida.');
+        valido = false;
+      }
+      const rua = campos.rua.value.trim();
+      if (!rua) {
+        mostrarErroCampo('rua', 'Informe a rua.');
+        valido = false;
+      }
+      const numero = campos.numero.value.trim();
+      if (!numero) {
+        mostrarErroCampo('numero', 'Informe o número.');
+        valido = false;
+      }
+      const bairro = campos.bairro.value.trim();
+      if (!bairro) {
+        mostrarErroCampo('bairro', 'Informe o bairro.');
+        valido = false;
+      }
+      const cidade = campos.cidade.value.trim();
+      if (!cidade) {
+        mostrarErroCampo('cidade', 'Informe a cidade.');
+        valido = false;
+      }
+      const cepLimpo = limparCep(campos.cep.value);
+      if (cepLimpo.length !== 8) {
+        mostrarErroCampo('cep', 'O CEP deve conter exatamente 8 números.');
+        valido = false;
+      }
+      const complemento = campos.complemento.value.trim();
+      if (!valido) {
+        return { valido: false, dados: null };
+      }
+
+      const dados = {
+        nome_unidade: nomeUnidade,
+        capacidade_fisioterapeutas: capacidadeFisio,
+        capacidade_pacientes: capacidadePacientes,
+        tipo_unidade: tipoUnidade,
+        ativa: campos.ativa.checked,
+        dt_abertura: dtAbertura,
+        endereco: {
+          rua: rua,
+          numero: numero,
+          bairro: bairro,
+          cidade: cidade,
+          cep: cepLimpo,
+          complemento: complemento
+        }
+      };
+      return { valido: true, dados };
+    }
+
+    function definirEstadoEnviando(estado) {
+      enviando = estado;
+      btnCadastrar.disabled = estado;
+      btnCadastrar.textContent = estado ? TEXTO_BOTAO_ENVIANDO : TEXTO_BOTAO_PADRAO;
+    }
+
+    function limparFormulario() {
+      form.reset();
+      campos.ativa.checked = true;
+      limparTodosErros();
+    }
+
+
+    async function cadastrarClinica(dados) {
+      let response;
+      try {
+        response = await fetch(ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(dados)
+        });
+      } catch (erroConexao) {
+        mostrarFeedback('erro', 'Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.');
+        return;
+      }
+      if (response.ok) {
+        mostrarFeedback('sucesso', 'Clínica cadastrada com sucesso!');
+        limparFormulario();
+        return;
+      }
+      if (response.status === 400) {
+        mostrarFeedback('erro', 'Não foi possível cadastrar a clínica: dados inválidos enviados ao servidor.');
+      } else if (response.status === 404) {
+        mostrarFeedback('erro', 'Não foi possível cadastrar a clínica: endpoint não encontrado.');
+      } else if (response.status === 500) {
+        mostrarFeedback('erro', 'Não foi possível cadastrar a clínica: erro interno no servidor.');
+      } else {
+        mostrarFeedback('erro', `Não foi possível cadastrar a clínica (erro ${response.status}).`);
+      }
+    }
+
+    form.addEventListener('submit', async (evento) => {
+      evento.preventDefault();
+      if (enviando) return;
+      esconderFeedback();
+      const resultado = validarFormulario();
+      if (!resultado.valido) {
+        mostrarFeedback('erro', 'Corrija os campos destacados antes de continuar.');
+        return;
+      }
+      definirEstadoEnviando(true);
+      await cadastrarClinica(resultado.dados);
+      definirEstadoEnviando(false);
+    });
+
+    btnLimpar.addEventListener('click', () => {
+      limparFormulario();
+      esconderFeedback();
+    });
+
+  </script>
+
+</body>
+
+</html>

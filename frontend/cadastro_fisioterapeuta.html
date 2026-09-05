@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro de Fisioterapeuta</title>
+  <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="imgs/logo.webp" type="image/avif">
+</head>
+<body>
+  <header class="header">
+    <img src="imgs/logo_fisio4life.avif" alt="Logo Fisio4Life" class="logo">
+    <ul class="links">
+      <a class="link-header" href="cadastro_clinica.html"><li>Cadastrar clínica</li></a>
+      <a class="link-header ativo" href="cadastro_fisioterapeuta.html"><li>Cadastrar fisioterapeuta</li></a>
+      <a class="link-header" href="fisioterapeutas.html"><li>Fisioterapeutas</li></a>
+
+    </ul>
+    <button class="btn-fale-conosco">Fale conosco</button>
+  </header>
+
+  <main class="page">
+    <div class="card">
+      <header class="card-header">
+        <h1 class="card-title">Cadastro de Fisioterapeuta</h1>
+        <p class="card-subtitle">Preencha os dados abaixo para registrar um novo fisioterapeuta no sistema.</p>
+      </header>
+
+      <div id="formFeedback" class="form-feedback" role="alert" aria-live="polite" hidden></div>
+
+      <form id="fisioForm" novalidate>
+        
+        <div class="section">
+          <p class="section-title">Dados Pessoais</p>
+
+          <div class="field">
+            <label for="nome">Nome completo <span class="required">*</span></label>
+            <input type="text" id="nome" name="nome" placeholder="Ex.: Maria de Souza" autocomplete="off">
+            <span class="error-message" id="erro-nome"></span>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="cpf">CPF <span class="required">*</span></label>
+              <input type="text" id="cpf" name="cpf" placeholder="Ex.: 123.456.789-00" autocomplete="off">
+              <span class="error-message" id="erro-cpf"></span>
+            </div>
+            <div class="field">
+              <label for="data_nascimento">Data de nascimento <span class="required">*</span></label>
+              <input type="date" id="data_nascimento" name="data_nascimento">
+              <span class="error-message" id="erro-data_nascimento"></span>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="sexo">Sexo <span class="required">*</span></label>
+              <select id="sexo" name="sexo">
+                <option value="">Selecione</option>
+                <option value="MASCULINO">Masculino</option>
+                <option value="FEMININO">Feminino</option>
+                <option value="OUTRO">Outro</option>
+              </select>
+              <span class="error-message" id="erro-sexo"></span>
+            </div>
+            <div class="field">
+              <label for="especialidade">Especialidade <span class="required">*</span></label>
+              <input type="text" id="especialidade" name="especialidade" placeholder="Ex.: Ortopedia, Esportiva" autocomplete="off">
+              <span class="error-message" id="erro-especialidade"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <p class="section-title">Vínculo Profissional</p>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="clinica_id">Clínica vinculada <span class="required">*</span></label>
+              <select id="clinica_id" name="clinica_id">
+                <option value="">Carregando clínicas...</option>
+              </select>
+              <span class="error-message" id="erro-clinica_id"></span>
+            </div>
+          </div>
+
+          <div class="field field-checkbox">
+            <label class="checkbox-label" for="ativo">
+              <input type="checkbox" id="ativo" name="ativo" checked>
+              <span>Fisioterapeuta ativo no sistema</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="section">
+          <p class="section-title">Endereço Residencial</p>
+
+          <div class="field">
+            <label for="rua">Rua <span class="required">*</span></label>
+            <input type="text" id="rua" name="rua" placeholder="Ex.: Rua das Flores" autocomplete="off">
+            <span class="error-message" id="erro-rua"></span>
+          </div>
+
+          <div class="field-row">
+            <div class="field field-small">
+              <label for="numero">Número <span class="required">*</span></label>
+              <input type="text" id="numero" name="numero" placeholder="Ex.: 123" autocomplete="off">
+              <span class="error-message" id="erro-numero"></span>
+            </div>
+            <div class="field">
+              <label for="bairro">Bairro <span class="required">*</span></label>
+              <input type="text" id="bairro" name="bairro" placeholder="Ex.: Centro" autocomplete="off">
+              <span class="error-message" id="erro-bairro"></span>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="cidade">Cidade <span class="required">*</span></label>
+              <input type="text" id="cidade" name="cidade" placeholder="Ex.: São Paulo" autocomplete="off">
+              <span class="error-message" id="erro-cidade"></span>
+            </div>
+            <div class="field field-small">
+              <label for="cep">CEP <span class="required">*</span></label>
+              <input type="text" id="cep" name="cep" placeholder="Ex.: 01000-000" inputmode="numeric" autocomplete="off">
+              <span class="error-message" id="erro-cep"></span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="complemento">Complemento</label>
+            <input type="text" id="complemento" name="complemento" placeholder="Opcional (Ex.: Apto 42)" autocomplete="off">
+          </div>
+        </div>
+
+        <div class="actions">
+          <button type="button" id="btnLimpar" class="btn btn-secondary">Limpar</button>
+          <button type="submit" id="btnCadastrar" class="btn btn-primary">Cadastrar fisioterapeuta</button>
+        </div>
+
+      </form>
+    </div>
+  </main>
+
+  <script>
+    const form = document.getElementById('fisioForm');
+    const btnCadastrar = document.getElementById('btnCadastrar');
+    const btnLimpar = document.getElementById('btnLimpar');
+    const formFeedback = document.getElementById('formFeedback');
+
+    const campos = {
+      nome: document.getElementById('nome'),
+      cpf: document.getElementById('cpf'),
+      data_nascimento: document.getElementById('data_nascimento'),
+      sexo: document.getElementById('sexo'),
+      especialidade: document.getElementById('especialidade'),
+      clinica_id: document.getElementById('clinica_id'),
+      ativo: document.getElementById('ativo'),
+      rua: document.getElementById('rua'),
+      numero: document.getElementById('numero'),
+      bairro: document.getElementById('bairro'),
+      cidade: document.getElementById('cidade'),
+      cep: document.getElementById('cep'),
+      complemento: document.getElementById('complemento')
+    };
+
+    const ENDPOINT_CLINICAS = 'http://localhost:8080/clinicas';
+    const ENDPOINT_FISIOTERAPEUTAS = 'http://localhost:8080/fisioterapeutas';
+    const TEXTO_BOTAO_PADRAO = 'Cadastrar fisioterapeuta';
+    const TEXTO_BOTAO_ENVIANDO = 'Cadastrando...';
+    let enviando = false;
+
+    function limparCpf(valor) { return valor.replace(/\D/g, ''); }
+    function limparCep(valor) { return valor.replace(/\D/g, ''); }
+
+    function mostrarErroCampo(nomeCampo, mensagem) {
+      const input = campos[nomeCampo];
+      const spanErro = document.querySelector(`#erro-${nomeCampo}`);
+      if (input) input.classList.add('invalid');
+      if (spanErro) spanErro.textContent = mensagem;
+    }
+
+    function limparErroCampo(nomeCampo) {
+      const input = campos[nomeCampo];
+      const spanErro = document.querySelector(`#erro-${nomeCampo}`);
+      if (input) input.classList.remove('invalid');
+      if (spanErro) spanErro.textContent = '';
+    }
+
+    function limparTodosErros() {
+      Object.keys(campos).forEach(key => limparErroCampo(key));
+    }
+
+    function mostrarFeedback(tipo, mensagem) {
+      formFeedback.hidden = false;
+      formFeedback.textContent = mensagem;
+      formFeedback.className = 'form-feedback feedback-' + tipo;
+    }
+
+    function esconderFeedback() {
+      formFeedback.hidden = true;
+      formFeedback.textContent = '';
+      formFeedback.className = 'form-feedback';
+    }
+
+    Object.keys(campos).forEach(key => {
+      if(campos[key] && campos[key].type !== 'checkbox') {
+        campos[key].addEventListener('input', () => limparErroCampo(key));
+      }
+    });
+
+    async function carregarClinicas() {
+      try {
+        const response = await fetch(ENDPOINT_CLINICAS);
+        if (response.ok) {
+          const clinicas = await response.json();
+          const select = campos.clinica_id;
+          select.innerHTML = '<option value="">Selecione uma clínica</option>';
+          
+          clinicas.forEach(c => {
+            const option = document.createElement('option');
+            option.value = c.id; 
+            option.textContent = c.nome_unidade || c.nome || `Clínica ID: ${c.id}`;
+            select.appendChild(option);
+          });
+        } else {
+          campos.clinica_id.innerHTML = '<option value="">Erro ao carregar clínicas</option>';
+        }
+      } catch (e) {
+        campos.clinica_id.innerHTML = '<option value="">Falha na conexão</option>';
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', carregarClinicas);
+
+    function validarFormulario() {
+      limparTodosErros();
+      let valido = true;
+
+      if (campos.nome.value.trim().length < 2) {
+        mostrarErroCampo('nome', 'O nome deve ter pelo menos 2 caracteres.');
+        valido = false;
+      }
+      
+      const cpfLimpo = limparCpf(campos.cpf.value);
+
+      if (
+        cpfLimpo.length !== 11
+      ) {
+        mostrarErroCampo('cpf', 'O CPF deve conter exatamente 11 números.');
+        valido = false;
+      }
+      const duzentosAnosAtrasMs = (1000 * 60 * 60 * 24 * 365 * 100)
+
+      if (
+        !campos.data_nascimento.value ||
+        new Date(data_nascimento) >= new Date() ||
+        new Date(data_nascimento) <= new Date() - duzentosAnosAtrasMs
+      ) {
+        mostrarErroCampo('data_nascimento', 'Informe a data de nascimento.');
+        valido = false;
+      }
+
+      if (
+        !campos.sexo.value ||
+        campos.sexo.length < 3
+      ) {
+        mostrarErroCampo('sexo', 'Selecione o sexo.');
+        valido = false;
+      }
+
+      if (
+        !campos.especialidade.value.trim() ||
+        campos.especialidade.length < 3
+      ) {
+        mostrarErroCampo('especialidade', 'Informe a especialidade.');
+        valido = false;
+      }
+
+      if (!campos.clinica_id.value) {
+        mostrarErroCampo('clinica_id', 'Vincule a uma clínica.');
+        valido = false;
+      }
+
+      if (
+        !campos.rua.value.trim() ||
+        campos.rua.length < 3
+      ) {
+        mostrarErroCampo('rua', 'Informe a rua.');
+        valido = false;
+      }
+
+      if (!campos.numero.value.trim()) {
+        mostrarErroCampo('numero', 'Informe o número.');
+        valido = false;
+      }
+
+      if (!campos.bairro.value.trim()) {
+        mostrarErroCampo('bairro', 'Informe o bairro.');
+        valido = false;
+      }
+
+      if (!campos.cidade.value.trim()) {
+        mostrarErroCampo('cidade', 'Informe a cidade.');
+        valido = false;
+      }
+
+      const cepLimpo = limparCep(campos.cep.value);
+      if (cepLimpo.length !== 8) {
+        mostrarErroCampo('cep', 'O CEP deve conter exatamente 8 números.');
+        valido = false;
+      }
+
+      if (!valido) return { valido: false, dados: null };
+
+      const dados = {
+        nome: campos.nome.value.trim(),
+        cpf: cpfLimpo,
+        data_nascimento: campos.data_nascimento.value,
+        sexo: campos.sexo.value,
+        especialidade: campos.especialidade.value.trim(),
+        ativo: campos.ativo.checked,
+        clinica_id: parseInt(campos.clinica_id.value, 10),
+        endereco: {
+          rua: campos.rua.value.trim(),
+          numero: campos.numero.value.trim(),
+          bairro: campos.bairro.value.trim(),
+          cidade: campos.cidade.value.trim(),
+          cep: cepLimpo,
+          complemento: campos.complemento.value.trim()
+        }
+      };
+
+      return { valido: true, dados };
+    }
+
+    function definirEstadoEnviando(estado) {
+      enviando = estado;
+      btnCadastrar.disabled = estado;
+      btnCadastrar.textContent = estado ? TEXTO_BOTAO_ENVIANDO : TEXTO_BOTAO_PADRAO;
+    }
+
+    function limparFormulario() {
+      form.reset();
+      campos.ativo.checked = true;
+      limparTodosErros();
+    }
+
+    async function cadastrarFisioterapeuta(dados) {
+      let response;
+      try {
+        response = await fetch(ENDPOINT_FISIOTERAPEUTAS, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(dados)
+        });
+      } catch (erroConexao) {
+        mostrarFeedback('erro', 'Não foi possível conectar ao servidor. Verifique sua conexão.');
+        return;
+      }
+
+      if (response.ok) {
+        mostrarFeedback('sucesso', 'Fisioterapeuta cadastrado com sucesso!');
+        limparFormulario();
+        return;
+      }
+
+      if (response.status === 400) {
+        mostrarFeedback('erro', 'Dados inválidos enviados ao servidor.');
+      } else if (response.status === 404) {
+        mostrarFeedback('erro', 'Endpoint não encontrado.');
+      } else {
+        mostrarFeedback('erro', `Erro ao cadastrar (Código ${response.status}).`);
+      }
+    }
+
+    form.addEventListener('submit', async (evento) => {
+      evento.preventDefault();
+      if (enviando) return;
+      esconderFeedback();
+      
+      const resultado = validarFormulario();
+      if (!resultado.valido) {
+        mostrarFeedback('erro', 'Corrija os campos destacados antes de continuar.');
+        return;
+      }
+
+      definirEstadoEnviando(true);
+      await cadastrarFisioterapeuta(resultado.dados);
+      definirEstadoEnviando(false);
+    });
+
+    btnLimpar.addEventListener('click', () => {
+      limparFormulario();
+      esconderFeedback();
+    });
+
+  </script>
+</body>
+</html>
