@@ -14,6 +14,7 @@ CREATE TABLE Clinica (
      capacidade_fisioterapeutas INT NOT NULL,
      capacidade_pacientes INT NOT NULL,
      tipo_unidade VARCHAR(50) NOT NULL,
+     cnpj VARCHAR(20) NOT NULL,
      ativa BOOLEAN NOT NULL,
      dt_abertura DATE NOT NULL,
 

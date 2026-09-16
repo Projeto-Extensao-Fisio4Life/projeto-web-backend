@@ -32,6 +32,9 @@ public class ClinicaController {
             if (clinica.getNome_unidade() == null || clinica.getNome_unidade().isBlank()) {
                 throw new IllegalArgumentException("O nome da unidade é obrigatório.");
             }
+            if (clinica.getCnpj() == null || clinica.getCnpj().isBlank() || clinica.getCnpj().length() != 14) {
+                throw new IllegalArgumentException("O CNPJ da clínica pe obrigatório e deve ter 14 dígitos.");
+            }
 
             if (clinica.getCapacidade_fisioterapeutas() == null || clinica.getCapacidade_fisioterapeutas() <= 0) {
                 throw new IllegalArgumentException("A capacidade de fisioterapeutas deve ser maior que 0.");

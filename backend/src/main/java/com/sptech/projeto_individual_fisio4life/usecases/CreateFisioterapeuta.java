@@ -33,6 +33,7 @@ public class CreateFisioterapeuta {
             return ResponseEntity.status(400).build();
         }
 
+
         Integer linhas_afetadas = fisioterapeutaRepository.create(fisioterapeuta, id_endereco);
 
         if (linhas_afetadas == 1) {

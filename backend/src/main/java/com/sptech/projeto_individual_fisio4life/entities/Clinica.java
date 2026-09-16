@@ -12,6 +12,7 @@ public class Clinica {
     private Integer capacidade_pacientes;
     private String tipo_unidade;
     private Boolean ativa;
+    private String cnpj;
     private Date dt_abertura;
     private Endereco endereco;
     private Integer endereco_id;
@@ -19,7 +20,18 @@ public class Clinica {
     public Clinica() {
     }
 
-
+    public Clinica(Integer id, String nome_unidade, Integer capacidade_fisioterapeutas, Integer capacidade_pacientes, String tipo_unidade, Boolean ativa, String cnpj, Date dt_abertura, Endereco endereco, Integer endereco_id) {
+        this.id = id;
+        this.nome_unidade = nome_unidade;
+        this.capacidade_fisioterapeutas = capacidade_fisioterapeutas;
+        this.capacidade_pacientes = capacidade_pacientes;
+        this.tipo_unidade = tipo_unidade;
+        this.ativa = ativa;
+        this.cnpj = cnpj;
+        this.dt_abertura = dt_abertura;
+        this.endereco = endereco;
+        this.endereco_id = endereco_id;
+    }
 
     public Integer getId() {
         return id;
@@ -27,14 +39,6 @@ public class Clinica {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
     }
 
     public String getNome_unidade() {
@@ -77,6 +81,14 @@ public class Clinica {
         this.ativa = ativa;
     }
 
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
     public Date getDt_abertura() {
         return dt_abertura;
     }
@@ -85,6 +97,13 @@ public class Clinica {
         this.dt_abertura = dt_abertura;
     }
 
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
 
     public Integer getEndereco_id() {
         return endereco_id;

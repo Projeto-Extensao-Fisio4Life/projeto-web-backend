@@ -85,13 +85,14 @@ public class ClinicaRepository {
 
         try {
             String sql =  """
-                    INSERT INTO Clinica (nome_unidade, capacidade_fisioterapeutas, capacidade_pacientes, tipo_unidade, ativa, dt_abertura, endereco_id) VALUES
-                    (?, ?, ?, ?, ?, ?, ?);
+                    INSERT INTO Clinica (nome_unidade, cnpj, capacidade_fisioterapeutas, capacidade_pacientes, tipo_unidade, ativa, dt_abertura, endereco_id) VALUES
+                    (?, ?, ?, ?, ?, ?, ?, ?);
                 """;
 
             int linhas_afetadas = jdbcTemplate.update(
                     sql,
                     clinica.getNome_unidade(),
+                    clinica.getCnpj(),
                     clinica.getCapacidade_fisioterapeutas(),
                     clinica.getCapacidade_pacientes(),
                     clinica.getTipo_unidade(),
