@@ -4,7 +4,7 @@ CREATE TABLE Endereco (
       numero VARCHAR(20) NOT NULL,
       bairro VARCHAR(100) NOT NULL,
       cidade VARCHAR(100) NOT NULL,
-      cep VARCHAR(8) NOT NULL,
+      cep VARCHAR(11) NOT NULL,
       complemento VARCHAR(150)
 );
 
