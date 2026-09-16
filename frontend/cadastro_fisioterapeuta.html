@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cadastro de Fisioterapeuta</title>
   <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="imgs/logo.webp" type="image/avif">
+  <link rel="icon" href="imgs/logo.webp" type="image/avif">
 </head>
+
 <body>
   <header class="header">
     <img src="imgs/logo_fisio4life.avif" alt="Logo Fisio4Life" class="logo">
     <ul class="links">
-      <a class="link-header" href="cadastro_clinica.html"><li>Cadastrar clínica</li></a>
-      <a class="link-header ativo" href="cadastro_fisioterapeuta.html"><li>Cadastrar fisioterapeuta</li></a>
-      <a class="link-header" href="fisioterapeutas.html"><li>Fisioterapeutas</li></a>
+      <a class="link-header" href="cadastro_clinica.html">
+        <li>Cadastrar clínica</li>
+      </a>
+      <a class="link-header ativo" href="cadastro_fisioterapeuta.html">
+        <li>Cadastrar fisioterapeuta</li>
+      </a>
+      <a class="link-header" href="fisioterapeutas.html">
+        <li>Fisioterapeutas</li>
+      </a>
 
     </ul>
     <button class="btn-fale-conosco">Fale conosco</button>
@@ -29,25 +37,26 @@
       <div id="formFeedback" class="form-feedback" role="alert" aria-live="polite" hidden></div>
 
       <form id="fisioForm" novalidate>
-        
         <div class="section">
           <p class="section-title">Dados Pessoais</p>
 
           <div class="field">
             <label for="nome">Nome completo <span class="required">*</span></label>
-            <input type="text" id="nome" name="nome" placeholder="Ex.: Maria de Souza" autocomplete="off">
+            <input type="text" id="nome" name="nome" value="Carlos Eduardo da Silva" placeholder="Ex.: Maria de Souza"
+              autocomplete="off">
             <span class="error-message" id="erro-nome"></span>
           </div>
 
           <div class="field-row">
             <div class="field">
               <label for="cpf">CPF <span class="required">*</span></label>
-              <input type="text" id="cpf" name="cpf" placeholder="Ex.: 123.456.789-00" autocomplete="off">
+              <input type="text" id="cpf" name="cpf" value="123.456.789-00" placeholder="Ex.: 123.456.789-00"
+                autocomplete="off">
               <span class="error-message" id="erro-cpf"></span>
             </div>
             <div class="field">
               <label for="data_nascimento">Data de nascimento <span class="required">*</span></label>
-              <input type="date" id="data_nascimento" name="data_nascimento">
+              <input type="date" id="data_nascimento" name="data_nascimento" value="1985-06-15">
               <span class="error-message" id="erro-data_nascimento"></span>
             </div>
           </div>
@@ -57,7 +66,7 @@
               <label for="sexo">Sexo <span class="required">*</span></label>
               <select id="sexo" name="sexo">
                 <option value="">Selecione</option>
-                <option value="MASCULINO">Masculino</option>
+                <option value="MASCULINO" selected>Masculino</option>
                 <option value="FEMININO">Feminino</option>
                 <option value="OUTRO">Outro</option>
               </select>
@@ -65,7 +74,8 @@
             </div>
             <div class="field">
               <label for="especialidade">Especialidade <span class="required">*</span></label>
-              <input type="text" id="especialidade" name="especialidade" placeholder="Ex.: Ortopedia, Esportiva" autocomplete="off">
+              <input type="text" id="especialidade" name="especialidade" value="Fisioterapia Esportiva"
+                placeholder="Ex.: Ortopedia, Esportiva" autocomplete="off">
               <span class="error-message" id="erro-especialidade"></span>
             </div>
           </div>
@@ -79,6 +89,7 @@
               <label for="clinica_id">Clínica vinculada <span class="required">*</span></label>
               <select id="clinica_id" name="clinica_id">
                 <option value="">Carregando clínicas...</option>
+                <option value="1" selected>Clínica Central de Fisioterapia</option>
               </select>
               <span class="error-message" id="erro-clinica_id"></span>
             </div>
@@ -86,7 +97,7 @@
 
           <div class="field field-checkbox">
             <label class="checkbox-label" for="ativo">
-              <input type="checkbox" id="ativo" name="ativo" checked>
+              <input type="checkbox" id="ativo" name="ativo" value="1" checked>
               <span>Fisioterapeuta ativo no sistema</span>
             </label>
           </div>
@@ -97,19 +108,21 @@
 
           <div class="field">
             <label for="rua">Rua <span class="required">*</span></label>
-            <input type="text" id="rua" name="rua" placeholder="Ex.: Rua das Flores" autocomplete="off">
+            <input type="text" id="rua" name="rua" value="Av. Paulista" placeholder="Ex.: Rua das Flores"
+              autocomplete="off">
             <span class="error-message" id="erro-rua"></span>
           </div>
 
           <div class="field-row">
             <div class="field field-small">
               <label for="numero">Número <span class="required">*</span></label>
-              <input type="text" id="numero" name="numero" placeholder="Ex.: 123" autocomplete="off">
+              <input type="text" id="numero" name="numero" value="1000" placeholder="Ex.: 123" autocomplete="off">
               <span class="error-message" id="erro-numero"></span>
             </div>
             <div class="field">
               <label for="bairro">Bairro <span class="required">*</span></label>
-              <input type="text" id="bairro" name="bairro" placeholder="Ex.: Centro" autocomplete="off">
+              <input type="text" id="bairro" name="bairro" value="Bela Vista" placeholder="Ex.: Centro"
+                autocomplete="off">
               <span class="error-message" id="erro-bairro"></span>
             </div>
           </div>
@@ -117,19 +130,22 @@
           <div class="field-row">
             <div class="field">
               <label for="cidade">Cidade <span class="required">*</span></label>
-              <input type="text" id="cidade" name="cidade" placeholder="Ex.: São Paulo" autocomplete="off">
+              <input type="text" id="cidade" name="cidade" value="São Paulo" placeholder="Ex.: São Paulo"
+                autocomplete="off">
               <span class="error-message" id="erro-cidade"></span>
             </div>
             <div class="field field-small">
               <label for="cep">CEP <span class="required">*</span></label>
-              <input type="text" id="cep" name="cep" placeholder="Ex.: 01000-000" inputmode="numeric" autocomplete="off">
+              <input type="text" id="cep" name="cep" value="01310-100" placeholder="Ex.: 01000-000" inputmode="numeric"
+                autocomplete="off">
               <span class="error-message" id="erro-cep"></span>
             </div>
           </div>
 
           <div class="field">
             <label for="complemento">Complemento</label>
-            <input type="text" id="complemento" name="complemento" placeholder="Opcional (Ex.: Apto 42)" autocomplete="off">
+            <input type="text" id="complemento" name="complemento" value="Conjunto 42"
+              placeholder="Opcional (Ex.: Apto 42)" autocomplete="off">
           </div>
         </div>
 
@@ -137,7 +153,6 @@
           <button type="button" id="btnLimpar" class="btn btn-secondary">Limpar</button>
           <button type="submit" id="btnCadastrar" class="btn btn-primary">Cadastrar fisioterapeuta</button>
         </div>
-
       </form>
     </div>
   </main>
@@ -204,7 +219,7 @@
     }
 
     Object.keys(campos).forEach(key => {
-      if(campos[key] && campos[key].type !== 'checkbox') {
+      if (campos[key] && campos[key].type !== 'checkbox') {
         campos[key].addEventListener('input', () => limparErroCampo(key));
       }
     });
@@ -216,10 +231,10 @@
           const clinicas = await response.json();
           const select = campos.clinica_id;
           select.innerHTML = '<option value="">Selecione uma clínica</option>';
-          
+
           clinicas.forEach(c => {
             const option = document.createElement('option');
-            option.value = c.id; 
+            option.value = c.id;
             option.textContent = c.nome_unidade || c.nome || `Clínica ID: ${c.id}`;
             select.appendChild(option);
           });
@@ -241,9 +256,8 @@
         mostrarErroCampo('nome', 'O nome deve ter pelo menos 2 caracteres.');
         valido = false;
       }
-      
-      const cpfLimpo = limparCpf(campos.cpf.value);
 
+      const cpfLimpo = limparCpf(campos.cpf.value);
       if (
         cpfLimpo.length !== 11
       ) {
@@ -380,7 +394,7 @@
       evento.preventDefault();
       if (enviando) return;
       esconderFeedback();
-      
+
       const resultado = validarFormulario();
       if (!resultado.valido) {
         mostrarFeedback('erro', 'Corrija os campos destacados antes de continuar.');
@@ -399,4 +413,5 @@
 
   </script>
 </body>
+
 </html>

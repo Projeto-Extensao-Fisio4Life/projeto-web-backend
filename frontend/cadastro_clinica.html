@@ -44,8 +44,13 @@
 
           <div class="field">
             <label for="nomeUnidade">Nome da unidade <span class="required">*</span></label>
-            <input type="text" id="nomeUnidade" name="nomeUnidade" placeholder="Ex.: Mooca" autocomplete="off">
+            <input value="Clinica Fenix" type="text" id="nomeUnidade" name="nomeUnidade" placeholder="Ex.: Mooca" autocomplete="off">
             <span class="error-message" id="erro-nomeUnidade"></span>
+          </div>
+          <div class="field">
+            <label for="cnpjUnidade">CNPJ<span class="required">*</span></label>
+            <input value="01938923890238" type="text" id="cnpjUnidade" name="cnpjUnidade" placeholder="Ex.: 00000000000000" autocomplete="off">
+            <span class="error-message" id="erro-cnpjUnidade"></span>
           </div>
 
           <div class="field-row">
@@ -53,7 +58,7 @@
               <label for="tipoUnidade">Tipo da unidade <span class="required">*</span></label>
               <select id="tipoUnidade" name="tipoUnidade">
                 <option value="">Selecione</option>
-                <option value="Principal">Principal</option>
+                <option selected value="Principal">Principal</option>
                 <option value="Filial">Filial</option>
               </select>
               <span class="error-message" id="erro-tipoUnidade"></span>
@@ -61,7 +66,7 @@
 
             <div class="field">
               <label for="dtAbertura">Data de abertura <span class="required">*</span></label>
-              <input type="date" id="dtAbertura" name="dtAbertura">
+              <input type="date" value="2016-09-15" id="dtAbertura" name="dtAbertura">
               <span class="error-message" id="erro-dtAbertura"></span>
             </div>
           </div>
@@ -80,14 +85,14 @@
 
           <div class="field-row">
             <div class="field">
-              <label for="capacidadeFisio">Capacidade de fisioterapeutas <span class="required">*</span></label>
-              <input type="number" id="capacidadeFisio" name="capacidadeFisio" min="1" step="1" placeholder="Ex.: 5">
+              <label for="capacidadeFisio">Capacidade de fisioterapeutas por horário <span class="required">*</span></label>
+              <input type="number" value="5" id="capacidadeFisio" name="capacidadeFisio" min="1" step="1" placeholder="Ex.: 5">
               <span class="error-message" id="erro-capacidadeFisio"></span>
             </div>
 
             <div class="field">
-              <label for="capacidadePacientes">Capacidade de pacientes <span class="required">*</span></label>
-              <input type="number" id="capacidadePacientes" name="capacidadePacientes" min="1" step="1"
+              <label for="capacidadePacientes">Capacidade de pacientes por horário <span class="required">*</span></label>
+              <input type="number" value="15" id="capacidadePacientes" name="capacidadePacientes" min="1" step="1"
                 placeholder="Ex.: 50">
               <span class="error-message" id="erro-capacidadePacientes"></span>
             </div>
@@ -100,20 +105,20 @@
 
           <div class="field">
             <label for="rua">Rua <span class="required">*</span></label>
-            <input type="text" id="rua" name="rua" placeholder="Ex.: Rua Gabirobeira" autocomplete="off">
+            <input type="text" id="rua" value="Rua Haddock Lobo" name="rua" placeholder="Ex.: Rua Gabirobeira" autocomplete="off">
             <span class="error-message" id="erro-rua"></span>
           </div>
 
           <div class="field-row">
             <div class="field field-small">
               <label for="numero">Número <span class="required">*</span></label>
-              <input type="text" id="numero" name="numero" placeholder="Ex.: 84" autocomplete="off">
+              <input type="text" id="numero" name="numero" value="595" placeholder="Ex.: 84" autocomplete="off">
               <span class="error-message" id="erro-numero"></span>
             </div>
 
             <div class="field">
               <label for="bairro">Bairro <span class="required">*</span></label>
-              <input type="text" id="bairro" name="bairro" placeholder="Ex.: Cidade das Flores" autocomplete="off">
+              <input type="text" id="bairro" name="bairro" value="Consolação" placeholder="Ex.: Cidade das Flores" autocomplete="off">
               <span class="error-message" id="erro-bairro"></span>
             </div>
           </div>
@@ -121,13 +126,13 @@
           <div class="field-row">
             <div class="field">
               <label for="cidade">Cidade <span class="required">*</span></label>
-              <input type="text" id="cidade" name="cidade" placeholder="Ex.: Osasco" autocomplete="off">
+              <input type="text" id="cidade" name="cidade" value="São Paulo" placeholder="Ex.: Osasco" autocomplete="off">
               <span class="error-message" id="erro-cidade"></span>
             </div>
 
             <div class="field field-small">
               <label for="cep">CEP <span class="required">*</span></label>
-              <input type="text" id="cep" name="cep" placeholder="Ex.: 06184-190" inputmode="numeric"
+              <input type="text" id="cep" name="cep" value="01414001" placeholder="Ex.: 06184-190" inputmode="numeric"
                 autocomplete="off">
               <span class="error-message" id="erro-cep"></span>
             </div>
@@ -156,6 +161,7 @@
     const formFeedback = document.getElementById('formFeedback');
     const campos = {
       nomeUnidade: document.getElementById('nomeUnidade'),
+      cnpjUnidade: document.getElementById('cnpjUnidade'),
       capacidadeFisio: document.getElementById('capacidadeFisio'),
       capacidadePacientes: document.getElementById('capacidadePacientes'),
       tipoUnidade: document.getElementById('tipoUnidade'),
@@ -178,6 +184,7 @@
       if (input) input.classList.add('invalid');
       if (spanErro) spanErro.textContent = mensagem;
     }
+    function limparCnpj(valor) { return valor.replace(/\D/g, ''); }
 
     function limparErroCampo(nomeCampo) {
       const input = campos[nomeCampo];
@@ -188,6 +195,7 @@
 
     function limparTodosErros() {
       limparErroCampo('nomeUnidade')
+      limparErroCampo('cnpjUnidade')
       limparErroCampo('capacidadeFisio')
       limparErroCampo('capacidadePacientes')
       limparErroCampo('tipoUnidade')
@@ -217,6 +225,7 @@
     }
 
     document.getElementById('nomeUnidade').addEventListener("input", limparErroCampo("nomeUnidade"))
+    document.getElementById('cnpjUnidade').addEventListener("input", limparErroCampo("cnpjUnidade"))
     document.getElementById('capacidadeFisio').addEventListener("input", limparErroCampo("capacidadeFisio"))
     document.getElementById('capacidadePacientes').addEventListener("input", limparErroCampo("capacidadePacientes"))
     document.getElementById('tipoUnidade').addEventListener("input", limparErroCampo("tipoUnidade"))
@@ -236,6 +245,11 @@
       const nomeUnidade = campos.nomeUnidade.value.trim();
       if (nomeUnidade.length < 3) {
         mostrarErroCampo('nomeUnidade', 'O nome da unidade deve possuir pelo menos 2 caracteres.');
+        valido = false;
+      }
+      const cnpjUnidade = limparCnpj(campos.cnpjUnidade.value.trim());
+      if (cnpjUnidade.length != 14) {
+        mostrarErroCampo('cnpjUnidade', 'O nome da unidade deve possuir pelo menos 2 caracteres.');
         valido = false;
       }
       const capacidadeFisioRaw = campos.capacidadeFisio.value;
@@ -299,6 +313,7 @@
 
       const dados = {
         nome_unidade: nomeUnidade,
+        cnpj: cnpjUnidade,
         capacidade_fisioterapeutas: capacidadeFisio,
         capacidade_pacientes: capacidadePacientes,
         tipo_unidade: tipoUnidade,
@@ -327,7 +342,7 @@
       campos.ativa.checked = true;
       limparTodosErros();
     }
-
+    var ENDPOINT = "http://localhost:8080/clinicas"
 
     async function cadastrarClinica(dados) {
       let response;
@@ -340,6 +355,7 @@
           body: JSON.stringify(dados)
         });
       } catch (erroConexao) {
+        console.log(erroConexao)
         mostrarFeedback('erro', 'Não foi possível conectar ao servidor. Verifique sua conexão e tente novamente.');
         return;
       }

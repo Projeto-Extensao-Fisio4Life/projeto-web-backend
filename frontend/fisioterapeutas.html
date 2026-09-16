@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,18 +8,25 @@
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="imgs/logo.webp" type="image/avif">
 </head>
+
 <body>
     <header class="header">
-    <img src="imgs/logo_fisio4life.avif" alt="Logo Fisio4Life" class="logo">
-    <ul class="links">
-      <a class="link-header" href="cadastro_clinica.html"><li>Cadastrar clínica</li></a>
-      <a class="link-header" href="cadastro_fisioterapeuta.html"><li>Cadastrar fisioterapeuta</li></a>
-      <a class="link-header ativo" href="fisioterapeutas.html"><li>Fisioterapeutas</li></a>
-      
+        <img src="imgs/logo_fisio4life.avif" alt="Logo Fisio4Life" class="logo">
+        <ul class="links">
+            <a class="link-header" href="cadastro_clinica.html">
+                <li>Cadastrar clínica</li>
+            </a>
+            <a class="link-header" href="cadastro_fisioterapeuta.html">
+                <li>Cadastrar fisioterapeuta</li>
+            </a>
+            <a class="link-header ativo" href="fisioterapeutas.html">
+                <li>Fisioterapeutas</li>
+            </a>
 
-    </ul>
-    <button class="btn-fale-conosco">Fale conosco</button>
-  </header>
+
+        </ul>
+        <button class="btn-fale-conosco">Fale conosco</button>
+    </header>
 
 
     <main class="container">
@@ -31,49 +39,50 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
 <script>
-const API_URL = 'http://localhost:8080/fisioterapeutas';
+    const API_URL = 'http://localhost:8080/fisioterapeutas';
 
-document.addEventListener('DOMContentLoaded', () => {
-    buscarFisioterapeutas();
-});
+    document.addEventListener('DOMContentLoaded', () => {
+        buscarFisioterapeutas();
+    });
 
-async function buscarFisioterapeutas() {
-    const container = document.getElementById('lista-fisioterapeutas');
+    async function buscarFisioterapeutas() {
+        const container = document.getElementById('lista-fisioterapeutas');
 
-    try {
-        const response = await fetch(API_URL);
+        try {
+            const response = await fetch(API_URL);
 
-        if (response.status == 204) {
-            container.innerHTML = '<p class="error">Nenhum fisioterapeuta cadastrado no momento.</p>';
-            return
-        }
-        const fisioterapeutas = await response.json();
+            if (response.status == 204) {
+                container.innerHTML = '<p class="error">Nenhum fisioterapeuta cadastrado no momento.</p>';
+                return
+            }
+            const fisioterapeutas = await response.json();
 
-        container.innerHTML = '';
+            container.innerHTML = '';
 
-        if (fisioterapeutas.length === 0) {
-            container.innerHTML = '<p class="error">Nenhum fisioterapeuta cadastrado no momento.</p>';
-            return;
-        }
-
-        fisioterapeutas.forEach(fisio => {
-            const card = document.createElement('div');
-            card.classList.add('card-fisio');
-
-            const badgeClass = fisio.ativo ? 'status-ativo' : 'status-inativo';
-            const statusTexto = fisio.ativo ? 'Ativo' : 'Inativo';
-
-            let dataNascimentoFormatada = "Não informada";
-            if(fisio.data_nascimento) {
-                const partesData = fisio.data_nascimento.split('-');
-                if(partesData.length === 3) {
-                     dataNascimentoFormatada = `${partesData[2]}/${partesData[1]}/${partesData[0]}`;
-                }
+            if (fisioterapeutas.length === 0) {
+                container.innerHTML = '<p class="error">Nenhum fisioterapeuta cadastrado no momento.</p>';
+                return;
             }
 
-            card.innerHTML = `
+            fisioterapeutas.forEach(fisio => {
+                const card = document.createElement('div');
+                card.classList.add('card-fisio');
+
+                const badgeClass = fisio.ativo ? 'status-ativo' : 'status-inativo';
+                const statusTexto = fisio.ativo ? 'Ativo' : 'Inativo';
+
+                let dataNascimentoFormatada = "Não informada";
+                if (fisio.data_nascimento) {
+                    const data = new Date(fisio.data_nascimento);
+                    // Verifica se a data é válida
+                    if (!isNaN(data.getTime())) {
+                        dataNascimentoFormatada = data.toLocaleDateString('pt-BR', { timeZone: 'UTC' });
+                    }
+                }
+                card.innerHTML = `
                 <div class="card-header">
                     <h3>${fisio.nome}</h3>
                     <span class="status-badge ${badgeClass}">${statusTexto}</span>
@@ -85,12 +94,12 @@ async function buscarFisioterapeutas() {
                 </div>
             `;
 
-            container.appendChild(card);
-        });
+                container.appendChild(card);
+            });
 
-    } catch (error) {
-        console.error("Erro ao buscar dados:", error);
-        container.innerHTML = `<p class="error">Falha ao conectar com o servidor. Verifique se a API está rodando.</p>`;
+        } catch (error) {
+            console.error("Erro ao buscar dados:", error);
+            container.innerHTML = `<p class="error">Falha ao conectar com o servidor. Verifique se a API está rodando.</p>`;
+        }
     }
-}
 </script>
